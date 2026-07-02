@@ -1,5 +1,5 @@
 #pragma once
-// テキストファイルの変換ルール
+// 繝�繧ｭ繧ｹ繝医ヵ繧｡繧､繝ｫ縺ｮ螟画鋤繝ｫ繝ｼ繝ｫ
 
 enum {
 	TEXTCNV_DEFAULT	= 0,

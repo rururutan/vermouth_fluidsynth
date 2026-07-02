@@ -8,7 +8,7 @@ UINT codecnv_euctosjis(char *dst, UINT dcnt, const char *src, UINT scnt) {
 	UINT	h;
 	UINT	l;
 
-	(void)scnt;			// ”»’è‚µ‚Ä‚È‚¢‚Ì‚©‚æ
+	(void)scnt;			// åˆ¤å®šã—ã¦ãªã„ã®ã‹ã‚ˆ
 	if (src == NULL) {
 		return(0);
 	}

@@ -151,7 +151,7 @@ const OEMCHAR *profile_getarg(const OEMCHAR *str, OEMCHAR *buf, UINT leng) {
 
 
 
-// ---- ‚Ü‚¾ƒeƒXƒg
+// ---- ã¾ã ãƒ†ã‚¹ãƒˆ
 
 typedef struct {
 	UINT		applen;

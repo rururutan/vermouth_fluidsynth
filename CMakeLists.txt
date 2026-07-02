@@ -4,7 +4,7 @@
 cmake_minimum_required(VERSION 3.20)
 
 #------------------------------------------
-# Porject setting
+# Project setting
 #------------------------------------------
 project(vermouth LANGUAGES CXX C)
 set(CMAKE_CXX_STANDARD 14)
@@ -16,12 +16,13 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 #------------------------------------------
 file(GLOB_RECURSE SRC_CPP RELATIVE ${PROJECT_SOURCE_DIR} ./src/Win9x/*.cpp)
 file(GLOB_RECURSE SRC_C RELATIVE ${PROJECT_SOURCE_DIR} ./src/*.c)
+set(SRC_RC ./src/Win9x/vermouth.rc)
 list(REMOVE_ITEM SRC_CPP "./src/Win9x/dd2.cpp")
 
 #------------------------------------------
 # Make DLL file
 #------------------------------------------
-add_library(vermouth SHARED ${SRC_C} ${SRC_CPP} ./src/Win9x/vermouth.def )
+add_library(vermouth SHARED ${SRC_C} ${SRC_CPP} ${SRC_RC} ./src/Win9x/vermouth.def )
 
 #------------------------------------------
 # Compile Option
@@ -32,7 +33,7 @@ target_compile_options(vermouth PRIVATE
         $<$<CONFIG:Debug>:/MDd /W3 /EHsc>
     >
 )
-
+target_compile_options(vermouth PRIVATE /utf-8)
 target_include_directories(vermouth PRIVATE ./src/ ./src/codecnv ./src/common ./src/generic ./src/vermouth ./src/Win9x ./src/zlib)
 
 target_compile_definitions(vermouth PRIVATE

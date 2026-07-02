@@ -45,7 +45,7 @@ static void keyon(UINT ch, UINT8 note) {
 	note &= 0x7f;
 	kdch = keydisp.ch + ch;
 	for (i=0; i<kdch->remain; i++) {
-		if (kdch->k[i] == note) {				// ÉqÉbÉgÇµÇΩ
+		if (kdch->k[i] == note) {				// „Éí„ÉÉ„Éà„Åó„Åü
 			for (; i<(kdch->remain-1); i++) {
 				kdch->k[i] = kdch->k[i+1];
 				kdch->r[i] = kdch->r[i+1];
@@ -72,7 +72,7 @@ static void keyoff(UINT ch, UINT8 note) {
 	note &= 0x7f;
 	kdch = keydisp.ch + ch;
 	for (i=0; i<kdch->remain; i++) {
-		if (kdch->k[i] == note) {				// ÉqÉbÉgÇµÇΩ
+		if (kdch->k[i] == note) {				// „Éí„ÉÉ„Éà„Åó„Åü
 			kdch->r[i] = 0x80 | (KEYDISP_LEVEL - 2);
 			kdch->flag |= 1;
 			break;

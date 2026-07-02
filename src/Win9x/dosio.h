@@ -1,92 +1,92 @@
 /**
  *	@file	dosio.h
- *	@brief	ƒtƒ@ƒCƒ‹ ƒAƒNƒZƒXŠÖ”ŒQ‚ÌéŒ¾‚¨‚æ‚ÑƒCƒ“ƒ^[ƒtƒFƒCƒX‚Ì’è‹`‚ð‚µ‚Ü‚·
+ *	@brief	ãƒ•ã‚¡ã‚¤ãƒ« ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°ç¾¤ã®å®£è¨€ãŠã‚ˆã³ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã®å®šç¾©ã‚’ã—ã¾ã™
  */
 
 #pragma once
 #include "milstr.h"
 
-/*! ƒR[ƒ‹‹K–ñ */
+/*! ã‚³ãƒ¼ãƒ«è¦ç´„ */
 #define	DOSIOCALL	__stdcall
 
 
-#define FILEH				HANDLE						/*!< ƒtƒ@ƒCƒ‹ ƒnƒ“ƒhƒ‹ */
-#define FILEH_INVALID		(INVALID_HANDLE_VALUE)		/*!< ƒtƒ@ƒCƒ‹ ƒGƒ‰[’l */
+#define FILEH				HANDLE						/*!< ãƒ•ã‚¡ã‚¤ãƒ« ãƒãƒ³ãƒ‰ãƒ« */
+#define FILEH_INVALID		(INVALID_HANDLE_VALUE)		/*!< ãƒ•ã‚¡ã‚¤ãƒ« ã‚¨ãƒ©ãƒ¼å€¤ */
 
-#define FLISTH				HANDLE						/*!< ƒtƒ@ƒCƒ‹ŒŸõƒnƒ“ƒhƒ‹ */
-#define FLISTH_INVALID		(INVALID_HANDLE_VALUE)		/*!< ƒtƒ@ƒCƒ‹ŒŸõƒGƒ‰[’l */
+#define FLISTH				HANDLE						/*!< ãƒ•ã‚¡ã‚¤ãƒ«æ¤œç´¢ãƒãƒ³ãƒ‰ãƒ« */
+#define FLISTH_INVALID		(INVALID_HANDLE_VALUE)		/*!< ãƒ•ã‚¡ã‚¤ãƒ«æ¤œç´¢ã‚¨ãƒ©ãƒ¼å€¤ */
 
 /**
- * ƒtƒ@ƒCƒ‹ ƒ|ƒCƒ“ƒ^ˆÚ“®‚ÌŠJŽn“_
+ * ãƒ•ã‚¡ã‚¤ãƒ« ãƒã‚¤ãƒ³ã‚¿ç§»å‹•ã®é–‹å§‹ç‚¹
  */
 enum
 {
-	FSEEK_SET	= 0,				/*!< ƒtƒ@ƒCƒ‹‚Ìæ“ª */
-	FSEEK_CUR	= 1,				/*!< Œ»Ý‚ÌˆÊ’u */
-	FSEEK_END	= 2					/*!< ƒtƒ@ƒCƒ‹‚ÌI‚í‚è */
+	FSEEK_SET	= 0,				/*!< ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ */
+	FSEEK_CUR	= 1,				/*!< ç¾åœ¨ã®ä½ç½® */
+	FSEEK_END	= 2					/*!< ãƒ•ã‚¡ã‚¤ãƒ«ã®çµ‚ã‚ã‚Š */
 };
 
 /**
- * ƒtƒ@ƒCƒ‹‘®«
+ * ãƒ•ã‚¡ã‚¤ãƒ«å±žæ€§
  */
 enum
 {
-	FILEATTR_READONLY	= 0x01,		/*!< “Ç‚ÝŽæ‚èê—p */
-	FILEATTR_HIDDEN		= 0x02,		/*!< ‰B‚µƒtƒ@ƒCƒ‹ */
-	FILEATTR_SYSTEM		= 0x04,		/*!< ƒVƒXƒeƒ€ ƒtƒ@ƒCƒ‹ */
-	FILEATTR_VOLUME		= 0x08,		/*!< ƒ”ƒHƒŠƒ…[ƒ€ */
-	FILEATTR_DIRECTORY	= 0x10,		/*!< ƒfƒBƒŒƒNƒgƒŠ */
-	FILEATTR_ARCHIVE	= 0x20		/*!< ƒA[ƒJƒCƒu ƒtƒ@ƒCƒ‹ */
+	FILEATTR_READONLY	= 0x01,		/*!< èª­ã¿å–ã‚Šå°‚ç”¨ */
+	FILEATTR_HIDDEN		= 0x02,		/*!< éš ã—ãƒ•ã‚¡ã‚¤ãƒ« */
+	FILEATTR_SYSTEM		= 0x04,		/*!< ã‚·ã‚¹ãƒ†ãƒ  ãƒ•ã‚¡ã‚¤ãƒ« */
+	FILEATTR_VOLUME		= 0x08,		/*!< ãƒ´ã‚©ãƒªãƒ¥ãƒ¼ãƒ  */
+	FILEATTR_DIRECTORY	= 0x10,		/*!< ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª */
+	FILEATTR_ARCHIVE	= 0x20		/*!< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ– ãƒ•ã‚¡ã‚¤ãƒ« */
 };
 
 /**
- * ƒtƒ@ƒCƒ‹ŒŸõƒtƒ‰ƒO
+ * ãƒ•ã‚¡ã‚¤ãƒ«æ¤œç´¢ãƒ•ãƒ©ã‚°
  */
 enum
 {
-	FLICAPS_SIZE		= 0x0001,	/*!< ƒTƒCƒY */
-	FLICAPS_ATTR		= 0x0002,	/*!< ‘®« */
-	FLICAPS_DATE		= 0x0004,	/*!< “ú•t */
-	FLICAPS_TIME		= 0x0008	/*!< Žž */
+	FLICAPS_SIZE		= 0x0001,	/*!< ã‚µã‚¤ã‚º */
+	FLICAPS_ATTR		= 0x0002,	/*!< å±žæ€§ */
+	FLICAPS_DATE		= 0x0004,	/*!< æ—¥ä»˜ */
+	FLICAPS_TIME		= 0x0008	/*!< æ™‚åˆ» */
 };
 
 /**
- * @brief DOSDATE \‘¢‘Ì
+ * @brief DOSDATE æ§‹é€ ä½“
  */
 struct _dosdate
 {
-	UINT16	year;			/*!< cx ”N */
-	UINT8	month;			/*!< dh ŒŽ */
-	UINT8	day;			/*!< dl “ú */
+	UINT16	year;			/*!< cx å¹´ */
+	UINT8	month;			/*!< dh æœˆ */
+	UINT8	day;			/*!< dl æ—¥ */
 };
-typedef struct _dosdate		DOSDATE;		/*!< DOSDATE ’è‹` */
+typedef struct _dosdate		DOSDATE;		/*!< DOSDATE å®šç¾© */
 
 /**
- * @brief DOSTIME \‘¢‘Ì
+ * @brief DOSTIME æ§‹é€ ä½“
  */
 struct _dostime
 {
-	UINT8	hour;			/*!< ch Žž */
-	UINT8	minute;			/*!< cl •ª */
-	UINT8	second;			/*!< dh •b */
+	UINT8	hour;			/*!< ch æ™‚ */
+	UINT8	minute;			/*!< cl åˆ† */
+	UINT8	second;			/*!< dh ç§’ */
 };
-typedef struct _dostime		DOSTIME;		/*!< DOSTIME ’è‹` */
+typedef struct _dostime		DOSTIME;		/*!< DOSTIME å®šç¾© */
 
 /**
- * @brief ƒtƒ@ƒCƒ‹ŒŸõŒ‹‰Ê
+ * @brief ãƒ•ã‚¡ã‚¤ãƒ«æ¤œç´¢çµæžœ
  */
 struct _flinfo
 {
-	UINT	caps;			/*!< ƒtƒ‰ƒO */
-	UINT32	size;			/*!< ƒTƒCƒY */
-	UINT32	attr;			/*!< ‘®« */
-	DOSDATE	date;			/*!< “ú•t */
-	DOSTIME	time;			/*!< Žž */
-	OEMCHAR	path[MAX_PATH];	/*!< ƒtƒ@ƒCƒ‹–¼ */
+	UINT	caps;			/*!< ãƒ•ãƒ©ã‚° */
+	UINT32	size;			/*!< ã‚µã‚¤ã‚º */
+	UINT32	attr;			/*!< å±žæ€§ */
+	DOSDATE	date;			/*!< æ—¥ä»˜ */
+	DOSTIME	time;			/*!< æ™‚åˆ» */
+	OEMCHAR	path[MAX_PATH];	/*!< ãƒ•ã‚¡ã‚¤ãƒ«å */
 };
-typedef struct _flinfo		FLINFO;			/*!< FLINFO ’è‹` */
+typedef struct _flinfo		FLINFO;			/*!< FLINFO å®šç¾© */
 
-/* DOSIO:ŠÖ”‚Ì€”õ */
+/* DOSIO:é–¢æ•°ã®æº–å‚™ */
 void dosio_init(void);
 void dosio_term(void);
 
@@ -95,7 +95,7 @@ extern "C"
 {
 #endif
 
-/* ƒtƒ@ƒCƒ‹‘€ì */
+/* ãƒ•ã‚¡ã‚¤ãƒ«æ“ä½œ */
 FILEH DOSIOCALL file_open(const OEMCHAR* lpPathName);
 FILEH DOSIOCALL file_open_rb(const OEMCHAR* lpPathName);
 FILEH DOSIOCALL file_create(const OEMCHAR* lpPathName);
@@ -111,7 +111,7 @@ short DOSIOCALL file_rename(const OEMCHAR* lpExistFile, const OEMCHAR* lpNewFile
 short DOSIOCALL file_dircreate(const OEMCHAR* lpPathName);
 short DOSIOCALL file_dirdelete(const OEMCHAR* lpPathName);
 
-/* ƒJƒŒƒ“ƒgƒtƒ@ƒCƒ‹‘€ì */
+/* ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ã‚¡ã‚¤ãƒ«æ“ä½œ */
 void DOSIOCALL file_setcd(const OEMCHAR* lpPathName);
 OEMCHAR* DOSIOCALL file_getcd(const OEMCHAR* lpPathName);
 FILEH DOSIOCALL file_open_c(const OEMCHAR* lpFilename);
@@ -120,14 +120,14 @@ FILEH DOSIOCALL file_create_c(const OEMCHAR* lpFilename);
 short DOSIOCALL file_delete_c(const OEMCHAR* lpFilename);
 short DOSIOCALL file_attr_c(const OEMCHAR* lpFilename);
 
-/* ƒtƒ@ƒCƒ‹ŒŸõ */
+/* ãƒ•ã‚¡ã‚¤ãƒ«æ¤œç´¢ */
 FLISTH DOSIOCALL file_list1st(const OEMCHAR* lpPathName, FLINFO* fli);
 BRESULT DOSIOCALL file_listnext(FLISTH hList, FLINFO* fli);
 void DOSIOCALL file_listclose(FLISTH hList);
 
-#define file_cpyname(a, b, c)	milstr_ncpy(a, b, c)		/*!< ƒtƒ@ƒCƒ‹–¼ƒRƒs[ */
-#define file_catname(a, b, c)	milstr_ncat(a, b, c)		/*!< ƒtƒ@ƒCƒ‹–¼’Ç‰Á */
-#define file_cmpname(a, b)		milstr_cmp(a, b)			/*!< ƒtƒ@ƒCƒ‹–¼”äŠr */
+#define file_cpyname(a, b, c)	milstr_ncpy(a, b, c)		/*!< ãƒ•ã‚¡ã‚¤ãƒ«åã‚³ãƒ”ãƒ¼ */
+#define file_catname(a, b, c)	milstr_ncat(a, b, c)		/*!< ãƒ•ã‚¡ã‚¤ãƒ«åè¿½åŠ  */
+#define file_cmpname(a, b)		milstr_cmp(a, b)			/*!< ãƒ•ã‚¡ã‚¤ãƒ«åæ¯”è¼ƒ */
 OEMCHAR* DOSIOCALL file_getname(const OEMCHAR* lpPathName);
 void DOSIOCALL file_cutname(OEMCHAR* lpPathName);
 OEMCHAR* DOSIOCALL file_getext(const OEMCHAR* lpPathName);
@@ -139,5 +139,5 @@ void DOSIOCALL file_setseparator(OEMCHAR* lpPathName, int cchPathName);
 }
 #endif
 
-#define file_createex(p, t)		file_create(p)				/*!< ƒtƒ@ƒCƒ‹ì¬ */
-#define file_createex_c(p, t)	file_create_c(p)			/*!< ƒtƒ@ƒCƒ‹ì¬ */
+#define file_createex(p, t)		file_create(p)				/*!< ãƒ•ã‚¡ã‚¤ãƒ«ä½œæˆ */
+#define file_createex_c(p, t)	file_create_c(p)			/*!< ãƒ•ã‚¡ã‚¤ãƒ«ä½œæˆ */

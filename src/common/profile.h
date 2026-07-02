@@ -14,7 +14,7 @@ const OEMCHAR *profile_getarg(const OEMCHAR *str, OEMCHAR *buf, UINT leng);
 
 
 
-// ---- Ç‹ÇæÉeÉXÉg
+// ---- „Åæ„Å†„ÉÜ„Çπ„Éà
 
 enum {
 	PFILEH_READONLY		= 0x0001,

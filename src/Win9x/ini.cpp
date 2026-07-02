@@ -1,6 +1,6 @@
 /**
  *	@file	ini.cpp
- *	@brief	İ’èƒtƒ@ƒCƒ‹ ƒAƒNƒZƒX‚Ì“®ì‚Ì’è‹`‚ğs‚¢‚Ü‚·
+ *	@brief	è¨­å®šãƒ•ã‚¡ã‚¤ãƒ« ã‚¢ã‚¯ã‚»ã‚¹ã®å‹•ä½œã®å®šç¾©ã‚’è¡Œã„ã¾ã™
  */
 
 #include "compiler.h"
@@ -13,9 +13,9 @@
 // ---- user type
 
 /**
- * 16ƒrƒbƒg”z—ñ‚ğ“Ç‚İ‚Ş
- * @param[in] lpString •¶š—ñ
- * @param[out] ini İ’èƒe[ƒuƒ‹
+ * 16ãƒ“ãƒƒãƒˆé…åˆ—ã‚’èª­ã¿è¾¼ã‚€
+ * @param[in] lpString æ–‡å­—åˆ—
+ * @param[out] ini è¨­å®šãƒ†ãƒ¼ãƒ–ãƒ«
  */
 static void inirdargs16(LPCTSTR lpString, const PFTBL* ini)
 {
@@ -47,9 +47,9 @@ static void inirdargs16(LPCTSTR lpString, const PFTBL* ini)
 }
 
 /**
- * 3ƒoƒCƒg‚ğ“Ç‚İ‚Ş
- * @param[in] lpString •¶š—ñ
- * @param[out] ini İ’èƒe[ƒuƒ‹
+ * 3ãƒã‚¤ãƒˆã‚’èª­ã¿è¾¼ã‚€
+ * @param[in] lpString æ–‡å­—åˆ—
+ * @param[out] ini è¨­å®šãƒ†ãƒ¼ãƒ–ãƒ«
  */
 static void inirdbyte3(LPCTSTR lpString, const PFTBL* ini)
 {
@@ -71,10 +71,10 @@ static void inirdbyte3(LPCTSTR lpString, const PFTBL* ini)
 
 #if !defined(_UNICODE)
 /**
- * ƒrƒbƒg‚ğİ’è
- * @param[in,out] lpBuffer ƒoƒbƒtƒ@
- * @param[in] nPos ˆÊ’u
- * @param[in] set ƒZƒbƒg or ƒNƒŠƒA
+ * ãƒ“ãƒƒãƒˆã‚’è¨­å®š
+ * @param[in,out] lpBuffer ãƒãƒƒãƒ•ã‚¡
+ * @param[in] nPos ä½ç½®
+ * @param[in] set ã‚»ãƒƒãƒˆ or ã‚¯ãƒªã‚¢
  */
 static void bitmapset(void* lpBuffer, UINT nPos, BOOL set)
 {
@@ -91,10 +91,10 @@ static void bitmapset(void* lpBuffer, UINT nPos, BOOL set)
 }
 
 /**
- * ƒrƒbƒg‚ğ“¾‚é
- * @param[in] lpBuffer ƒoƒbƒtƒ@
- * @param[in] nPos ˆÊ’u
- * @return ƒrƒbƒg
+ * ãƒ“ãƒƒãƒˆã‚’å¾—ã‚‹
+ * @param[in] lpBuffer ãƒãƒƒãƒ•ã‚¡
+ * @param[in] nPos ä½ç½®
+ * @return ãƒ“ãƒƒãƒˆ
  */
 static BOOL bitmapget(const void* lpBuffer, UINT nPos)
 {
@@ -104,10 +104,10 @@ static BOOL bitmapget(const void* lpBuffer, UINT nPos)
 }
 
 /**
- * ƒoƒCƒiƒŠ‚ğƒAƒ“ƒVƒŠƒAƒ‰ƒCƒY
- * @param[out] lpBin ƒoƒCƒiƒŠ
- * @param[in] cbBin ƒoƒCƒiƒŠ‚ÌƒTƒCƒY
- * @param[in] lpString •¶š—ñƒoƒbƒtƒ@
+ * ãƒã‚¤ãƒŠãƒªã‚’ã‚¢ãƒ³ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚º
+ * @param[out] lpBin ãƒã‚¤ãƒŠãƒª
+ * @param[in] cbBin ãƒã‚¤ãƒŠãƒªã®ã‚µã‚¤ã‚º
+ * @param[in] lpString æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡
  */
 static void binset(void* lpBin, UINT cbBin, LPCTSTR lpString)
 {
@@ -131,11 +131,11 @@ static void binset(void* lpBin, UINT cbBin, LPCTSTR lpString)
 }
 
 /**
- * ƒoƒCƒiƒŠ‚ğƒVƒŠƒAƒ‰ƒCƒY
- * @param[out] lpString •¶š—ñƒoƒbƒtƒ@
- * @param[in] cchString •¶š—ñƒoƒbƒtƒ@’·
- * @param[in] lpBin ƒoƒCƒiƒŠ
- * @param[in] cbBin ƒoƒCƒiƒŠ‚ÌƒTƒCƒY
+ * ãƒã‚¤ãƒŠãƒªã‚’ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚º
+ * @param[out] lpString æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡
+ * @param[in] cchString æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡é•·
+ * @param[in] lpBin ãƒã‚¤ãƒŠãƒª
+ * @param[in] cbBin ãƒã‚¤ãƒŠãƒªã®ã‚µã‚¤ã‚º
  */
 static void binget(LPTSTR lpString, int cchString, const void* lpBin, UINT cbBin)
 {
@@ -155,11 +155,11 @@ static void binget(LPTSTR lpString, int cchString, const void* lpBin, UINT cbBin
 }
 
 /**
- * İ’è“Ç‚İo‚µ
- * @param[in] lpPath ƒpƒX
- * @param[in] lpTitle ƒ^ƒCƒgƒ‹
- * @param[in] lpTable İ’èƒe[ƒuƒ‹
- * @param[in] nCount İ’èƒe[ƒuƒ‹ ƒAƒCƒeƒ€”
+ * è¨­å®šèª­ã¿å‡ºã—
+ * @param[in] lpPath ãƒ‘ã‚¹
+ * @param[in] lpTitle ã‚¿ã‚¤ãƒˆãƒ«
+ * @param[in] lpTable è¨­å®šãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param[in] nCount è¨­å®šãƒ†ãƒ¼ãƒ–ãƒ« ã‚¢ã‚¤ãƒ†ãƒ æ•°
  */
 void ini_read(LPCTSTR lpPath, LPCTSTR lpTitle, const PFTBL* lpTable, UINT nCount)
 {
@@ -250,11 +250,11 @@ void ini_read(LPCTSTR lpPath, LPCTSTR lpTitle, const PFTBL* lpTable, UINT nCount
 }
 
 /**
- * İ’è‘‚«‚İ
- * @param[in] lpPath ƒpƒX
- * @param[in] lpTitle ƒ^ƒCƒgƒ‹
- * @param[in] lpTable İ’èƒe[ƒuƒ‹
- * @param[in] nCount İ’èƒe[ƒuƒ‹ ƒAƒCƒeƒ€”
+ * è¨­å®šæ›¸ãè¾¼ã¿
+ * @param[in] lpPath ãƒ‘ã‚¹
+ * @param[in] lpTitle ã‚¿ã‚¤ãƒˆãƒ«
+ * @param[in] lpTable è¨­å®šãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param[in] nCount è¨­å®šãƒ†ãƒ¼ãƒ–ãƒ« ã‚¢ã‚¤ãƒ†ãƒ æ•°
  */
 void ini_write(LPCTSTR lpPath, LPCTSTR lpTitle, const PFTBL* lpTable, UINT nCount)
 {
@@ -339,9 +339,9 @@ void ini_write(LPCTSTR lpPath, LPCTSTR lpTitle, const PFTBL* lpTable, UINT nCoun
 // ---- Use profile.c
 
 /**
- * ƒR[ƒ‹ƒoƒbƒN
- * @param[in] item ƒAƒCƒeƒ€
- * @param[in] lpString •¶š—ñ
+ * ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+ * @param[in] item ã‚¢ã‚¤ãƒ†ãƒ 
+ * @param[in] lpString æ–‡å­—åˆ—
  */
 static void UserReadItem(const PFTBL* item, LPCTSTR lpString)
 {
@@ -362,11 +362,11 @@ static void UserReadItem(const PFTBL* item, LPCTSTR lpString)
 }
 
 /**
- * İ’è“Ç‚İæ‚è
- * @param[in] lpPath ƒpƒX
- * @param[in] lpTitle ƒ^ƒCƒgƒ‹
- * @param[in] lpTable İ’èƒe[ƒuƒ‹
- * @param[in] nCount İ’èƒe[ƒuƒ‹ ƒAƒCƒeƒ€”
+ * è¨­å®šèª­ã¿å–ã‚Š
+ * @param[in] lpPath ãƒ‘ã‚¹
+ * @param[in] lpTitle ã‚¿ã‚¤ãƒˆãƒ«
+ * @param[in] lpTable è¨­å®šãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param[in] nCount è¨­å®šãƒ†ãƒ¼ãƒ–ãƒ« ã‚¢ã‚¤ãƒ†ãƒ æ•°
  */
 void ini_read(LPCTSTR lpPath, LPCTSTR lpTitle, const PFTBL* lpTable, UINT nCount)
 {
@@ -374,11 +374,11 @@ void ini_read(LPCTSTR lpPath, LPCTSTR lpTitle, const PFTBL* lpTable, UINT nCount
 }
 
 /**
- * İ’è‘‚«‚İ
- * @param[in] lpPath ƒpƒX
- * @param[in] lpTitle ƒ^ƒCƒgƒ‹
- * @param[in] lpTable İ’èƒe[ƒuƒ‹
- * @param[in] nCount İ’èƒe[ƒuƒ‹ ƒAƒCƒeƒ€”
+ * è¨­å®šæ›¸ãè¾¼ã¿
+ * @param[in] lpPath ãƒ‘ã‚¹
+ * @param[in] lpTitle ã‚¿ã‚¤ãƒˆãƒ«
+ * @param[in] lpTable è¨­å®šãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param[in] nCount è¨­å®šãƒ†ãƒ¼ãƒ–ãƒ« ã‚¢ã‚¤ãƒ†ãƒ æ•°
  */
 void ini_write(LPCTSTR lpPath, LPCTSTR lpTitle, const PFTBL* lpTable, UINT nCount)
 {
@@ -391,13 +391,13 @@ void ini_write(LPCTSTR lpPath, LPCTSTR lpTitle, const PFTBL* lpTable, UINT nCoun
 // ----
 
 #if !defined(SUPPORT_PC9821)
-static const TCHAR s_szIniTitle[] = TEXT("NekoProjectII");		//!< ƒAƒvƒŠ–¼
+static const TCHAR s_szIniTitle[] = TEXT("NekoProjectII");		//!< ã‚¢ãƒ—ãƒªå
 #else
-static const TCHAR s_szIniTitle[] = TEXT("NekoProject21");		//!< ƒAƒvƒŠ–¼
+static const TCHAR s_szIniTitle[] = TEXT("NekoProject21");		//!< ã‚¢ãƒ—ãƒªå
 #endif
 
 /**
- * ’Ç‰Áİ’è
+ * è¿½åŠ è¨­å®š
  */
 enum
 {
@@ -412,13 +412,13 @@ enum
 	PFRO_KB			= PFFLAG_RO + PFTYPE_KB
 };
 
-//! .ini Šg’£q
+//! .ini æ‹¡å¼µå­
 static const TCHAR s_szExt[] = TEXT(".ini");
 
 /**
- * İ’èƒtƒ@ƒCƒ‹‚ÌƒpƒX‚ğ“¾‚é
- * @param[out] lpPath ƒpƒX
- * @param[in] cchPath ƒpƒX ƒoƒbƒtƒ@‚Ì’·‚³
+ * è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹ã‚’å¾—ã‚‹
+ * @param[out] lpPath ãƒ‘ã‚¹
+ * @param[in] cchPath ãƒ‘ã‚¹ ãƒãƒƒãƒ•ã‚¡ã®é•·ã•
  */
 void initgetfile(LPTSTR lpPath, UINT cchPath)
 {
