@@ -1,90 +1,115 @@
-# Vermouth
+# Vermouth FluidSynth
 
-A modernized fork of the original Vermouth project.
+Vermouth FluidSynth is a drop-in replacement for the original [Vermouth](http://retropc.net/yui/hoot/) DLL interface used by [hoot](http://dmpsoft.s17.xrea.com/hoot).
 
-Vermouth is a Timidity compatible software synthesizer that commonly used with **[hoot](http://dmpsoft.s17.xrea.com/hoot)**.
-
-## Overview
-
-This fork focuses on improving compatibility with modern Windows environments while preserving the original functionality and behavior of Vermouth.
-
-Enhancements include:
-
-* x64 support
-* High-DPI awareness
-* Dark mode title bar support
-* Various maintenance and modernization fixes
-
-The playback engine and application behavior are intended to remain compatible with the original project.
+The original Vermouth synthesizer is a TiMidity-style software synthesizer. This fork keeps the public DLL interface compatible with hoot, but replaces the MIDI rendering backend with [FluidSynth](https://www.fluidsynth.org/) so that standard SF2 SoundFont files can be used.
 
 ## Features
 
-### x64 Support
+- Compatible with the existing `vermouth.dll` interface expected by hoot
+- SF2 SoundFont playback through FluidSynth
+- In-memory rendering only; no FluidSynth audio device is opened by the DLL
+- Optional key display window inherited from the original Vermouth codebase
 
-The project can be built for both x86 and x64 platforms.
+## Runtime Requirements
 
-### High-DPI Support
+- Windows 10 or later by default
+- hoot (`hoot.exe`)
+- `vermouth.dll`
+- FluidSynth runtime DLLs, including `libfluidsynth-3.dll` and its dependencies
+- An SF2 SoundFont file
 
-Improved display scaling on modern high-resolution monitors.
+## Installation
 
-### Dark Mode
+Copy the following files to the same directory as `hoot.exe`:
 
-Supports dark mode title bars on supported versions of Windows.
+```text
+vermouth.dll
+vermouth.ini
+libfluidsynth-3.dll
+FluidSynth dependency DLLs
+```
 
-> Note: Only the title bar is dark-mode aware. The application UI itself is unchanged.
+Edit `vermouth.ini` and set the SoundFont path:
 
-## Requirements
+```ini
+[SF2]
+File=soundfont.sf2
+```
 
-### Runtime
-
-* Windows 10 or later (official binaries)
-
-### Build
-
-* Visual Studio 2022 or later
-* CMake
-
-The source code can also be configured to target Windows 7 and later. See the customization section below.
+Relative paths are resolved from the hoot working directory. Absolute paths and environment-variable-expanded paths are also supported by the DLL loader code.
 
 ## Building
 
+### Prerequisites
+
+- Visual Studio 2022 with the C++ desktop workload
+- CMake 3.20 or later
+- vcpkg
+- FluidSynth installed through vcpkg
+
+Install FluidSynth for the required triplets:
+
+```bat
+vcpkg install fluidsynth:x64-windows
+vcpkg install fluidsynth:x86-windows
+```
+
 ### Configure
 
-```bash
-cmake -S . -B build
-cmake -S . -B build_x86 -A Win32
+Use the vcpkg CMake toolchain file when configuring the project.
+
+For x64:
+
+```bat
+cmake -S . -B build-x64 -A x64 ^
+  -DCMAKE_TOOLCHAIN_FILE="%VCPKG_ROOT%\scripts\buildsystems\vcpkg.cmake" ^
+  -DVCPKG_TARGET_TRIPLET=x64-windows
+```
+
+For x86:
+
+```bat
+cmake -S . -B build-x86 -A Win32 ^
+  -DCMAKE_TOOLCHAIN_FILE="%VCPKG_ROOT%\scripts\buildsystems\vcpkg.cmake" ^
+  -DVCPKG_TARGET_TRIPLET=x86-windows
 ```
 
 ### Build
 
-```bash
-cmake --build build --config Release
-cmake --build build_x86 --config Release
+```bat
+cmake --build build-x64 --config Release
+cmake --build build-x86 --config Release
+```
+
+The DLL is generated under:
+
+```text
+build-*/bin/Release/vermouth.dll
+build-*/bin/Release/libfluidsynth-3.dll
 ```
 
 ## Customization
 
-### Build for Windows 7 or Later
+### Windows 7 Target
 
-To target Windows 7 and later, modify the following value in `CMakeLists.txt`:
+The default build targets modern Windows:
 
-```cpp
+```cmake
 WINVER=0x0A00
 ```
 
-to:
+To build for Windows 7 or later, change it to:
 
-```cpp
+```cmake
 WINVER=0x0601
 ```
 
+This only changes the SDK target macros. Runtime compatibility still depends on the selected FluidSynth build and its dependencies.
+
 ### Disable the Key Display Window
 
-Comment out the following line in:
-
-```text
-src/Win9x/compiler.h
-```
+Comment out the following definition in `src/Win9x/compiler.h`:
 
 ```cpp
 #define SUPPORT_KEYDISP
@@ -94,17 +119,10 @@ src/Win9x/compiler.h
 
 This project is distributed under the same license as the original Vermouth project.
 
-BSD 3-Clause License.
-
-See the LICENSE file for details.
-
-## Original Project
-
-Original Vermouth project:
-
-http://retropc.net/yui/hoot/
+See `LICENSE` for details.
 
 ## Acknowledgements
 
-This project is based on the original Vermouth project. All credit for the original implementation belongs to its original authors and contributors.
+This project is based on the original Vermouth codebase. All credit for the original implementation belongs to its original authors and contributors.
 
+FluidSynth is used as the replacement MIDI rendering backend.

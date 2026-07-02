@@ -6,6 +6,7 @@
 #include	"subwind.h"
 #include	"vermouth.h"
 #include	"keydisp.h"
+#include	<shlwapi.h>
 
 
 	HWND		hWndMain;
@@ -35,6 +36,18 @@ static unsigned char midi_last_data;
 #define MIDIOUTS2(a)		(*(UINT16 *)(a))
 #define MIDIOUTS3(a)		((*(UINT32 *)(a)) & 0xffffff)
 
+static void GetPath(LPTSTR lpModule, UINT cbModule)
+{
+	TCHAR szModule[MAX_PATH];
+	::GetModuleFileName(hInst, szModule, _countof(szModule));
+	::PathRenameExtension(szModule, TEXT(".ini"));
+
+	TCHAR szSF2[MAX_PATH];
+	::GetPrivateProfileString(TEXT("SF2"), TEXT("File"), TEXT("soundfont.sf2"), szSF2, _countof(szSF2), szModule);
+
+	::ExpandEnvironmentStrings(szSF2, lpModule, cbModule);
+}
+
 
 DLLAPI int WINAPI vermouth_Open(UINT sample_rate) {
 
@@ -42,12 +55,15 @@ DLLAPI int WINAPI vermouth_Open(UINT sample_rate) {
 		goto open_err1;
 	}
 
+	TCHAR szModule[MAX_PATH];
+	GetPath(szModule, _countof(szModule));
+
 	midi_state = MIDI_STATE_READY;
 	ZeroMemory(midi_buff, sizeof(midi_buff));
 	midi_buff_ptr = 0;
 	midi_last_data = 0;
 
-	vermouth_module = midimod_create(sample_rate);
+	vermouth_module = midimod_create(szModule, sample_rate);
 	if (vermouth_module == NULL) {
 		goto open_err1;
 	}

@@ -12,6 +12,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 #------------------------------------------
+# Dependencies
+#------------------------------------------
+find_package(FluidSynth CONFIG REQUIRED)
+
+#------------------------------------------
 # Source
 #------------------------------------------
 file(GLOB_RECURSE SRC_CPP RELATIVE ${PROJECT_SOURCE_DIR} ./src/Win9x/*.cpp)
@@ -57,6 +62,7 @@ target_link_libraries(vermouth PRIVATE
     gdi32
     shlwapi
     winmm
+    FluidSynth::libfluidsynth
 )
 
 #------------------------------------------

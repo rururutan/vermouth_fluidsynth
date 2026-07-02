@@ -18,7 +18,7 @@ extern "C" {
 
 UINT midiout_getver(OEMCHAR *string, int leng);
 
-MIDIMOD midimod_create(UINT samprate);
+MIDIMOD midimod_create(wchar_t *sf2name, UINT samprate);
 void midimod_destroy(MIDIMOD hdl);
 void midimod_loadprogram(MIDIMOD hdl, UINT num);
 void midimod_loadrhythm(MIDIMOD hdl, UINT num);
