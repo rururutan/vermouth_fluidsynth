@@ -162,7 +162,8 @@ DLLAPI int WINAPI vermouth_Write(UINT8 data) {
 		}
 		else {
 			midi_buff[midi_buff_ptr++] = midi_last_data;
-			midi_state = MIDI_STATE_DATA3;
+			midi_state = ((midi_last_data & 0xe0) == 0xc0)
+						? MIDI_STATE_DATA2 : MIDI_STATE_DATA3;
 		}
 	}
 
